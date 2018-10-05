@@ -1,5 +1,2 @@
-[vsim]
-172.22.113.210 ansible_user=netconf ansible_ssh_pass=netconf
-
-[server]
-127.0.0.1 ansible_user=timetra ansible_ssh_pass=timetra
+[nokia]
+127.0.0.1 ansible_user=admin ansible_ssh_pass=admin ansible_ssh_port=830 ansible_network_os=sros

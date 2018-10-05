@@ -1,9 +1,9 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: vsim
-  connection: local
+- hosts: nokia
+  connection: netconf
   gather_facts: False
 
   roles:
-    - role: nctest03
+    - role: nctest05
 

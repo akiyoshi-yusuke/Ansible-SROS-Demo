@@ -1,8 +1,5 @@
-- name: Delete customer (Nokia models) 
+- name: Delete customer alpha (Nokia models) 
   netconf_config:
-    host: "{{ inventory_hostname }}"
-    username: "{{ hostvars[inventory_hostname].ansible_user }}"
-    password: "{{ hostvars[inventory_hostname].ansible_ssh_pass }}"
     datastore: candidate
-    src: delete_customer_10.xml
+    content: "{{ lookup('file', 'templates/delete_customer_10.xml') }}"
 

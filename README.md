@@ -1,12 +1,12 @@
 # Ansible-SROS-Demo
-Example Playbooks for Nokia SROS Routers
+Example Playbooks for Nokia SR OS Routers
 
 ## Example 1
 
-Creation of "Customer 10" using NETCONF with ALU R13 BASE YANG modules. XML code is embedded in tasks/main.yml file. Edit-config operation "merge" is used.
+Retrieve state information using NETCONF using nokia-state module.
 
 ```
-├── 01_Add_Customer_BASE.yml
+├── nctest01.yml
 └── roles
     ├── nctest01
     │   └── tasks
@@ -15,10 +15,10 @@ Creation of "Customer 10" using NETCONF with ALU R13 BASE YANG modules. XML code
 
 ## Example 2
 
-Creation of "Customer 10" using NETCONF with Nokia YANG modules. XML code is embedded in tasks/main.yml file. Edit-config operation "create" is used.
+Creation of customer "alpha" using NETCONF with nokia-conf module. XML code is embedded in tasks/main.yml file. Edit-config operation "create" is used. Returns an error if the customer already exists.
 
 ```
-├── 02_Add_Customer_NOKIA.yml
+├── nctest02.yml
 └── roles
     ├── nctest02
     │   └── tasks
@@ -27,10 +27,10 @@ Creation of "Customer 10" using NETCONF with Nokia YANG modules. XML code is emb
 
 ## Example 3
 
-Deletion of "Customer 10" using NETCONF with Nokia YANG modules. XML code is contained in separate delete_customer_10.xml file. Edit-config operation "delete" is used.
+Deletion of customer "alpha" using NETCONF with nokia-conf module. XML code is contained in separate delete_customer_10.xml file. Edit-config operation "delete" is used. Returns an error if the customer does not exist.
 
 ```
-├── 03_Delete_Customer.yml
+├── nctest03.yml
 └── roles
     ├── nctest03
     │   ├── tasks
@@ -41,10 +41,10 @@ Deletion of "Customer 10" using NETCONF with Nokia YANG modules. XML code is con
 
 ## Example 4
 
-Deletion of "Customer 10" using NETCONF with Nokia YANG modules. XML code is contained in separate remove.xml file. Edit-config operation "remove" is used.
+Deletion of customer "alpha" using NETCONF with nokia-conf module. XML code is contained in separate XML file. Edit-config operation "remove" is used. Returns no error if the customer does not exist.
 
 ```
-├── 04_Remove_Customer.yml
+├── nctest04.yml
 └── roles
     ├── nctest04
     │   ├── tasks
@@ -55,10 +55,14 @@ Deletion of "Customer 10" using NETCONF with Nokia YANG modules. XML code is con
 
 ## Example 5
 
-Creation of "Customer 10" and a list of VPLS services using NETCONF with Nokia YANG modules. XML code is auto-rendered using the create_vpls.j2 Jinja2 template. VPLS service data is contained in the defaults/main.yml file.
+Creation of customer "demo" and a list of VPLS services using NETCONF with the nokia-conf module. XML code is auto-rendered using the create_vpls.xml Jinja2 template. VPLS service data is contained in the defaults/main.yml file.
+
+Edit-operation "replace" is used. All pre-existing customer and services configured are replaced by the new configuration. Returns no error if the customer or services do already exist.
+
+This example is just providing the key-values "customer-name" and "service-name". The numeric identifiers "customer-id" and "service-id" are automatically created using "md-auto-id". Those auto-created values are not persisted and might change when rebooting the node.
 
 ```
-├── 05_Create_VPLS_from_Template.yml
+├── nctest05.yml
 └── roles
     └── nctest05
         ├── defaults
@@ -66,6 +70,6 @@ Creation of "Customer 10" and a list of VPLS services using NETCONF with Nokia Y
         ├── tasks
         │   └── main.yml
         └── templates
-            └── create_vpls.j2
+            └── create_vpls.xml
 ```
 

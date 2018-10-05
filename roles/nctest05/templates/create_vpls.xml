@@ -1,0 +1,34 @@
+<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <configure xmlns="urn:nokia.com:sros:ns:yang:sr:conf">
+    <service operation="replace">
+        <customer>
+            <customer-name>demo</customer-name>
+            <description>NETCONF demo for Nokia SR OS using auto-id</description>
+            <contact>nokia team</contact>
+        </customer>
+        <md-auto-id>
+            <service-id-range>
+                <start>2000000000</start>
+                <end>2147483647</end>
+            </service-id-range>
+            <customer-id-range>
+                <start>2000000000</start>
+                <end>2147483647</end>
+            </customer-id-range>
+        </md-auto-id>
+{% for svc in vpls %}
+      <vpls>
+        <service-name>{{ svc.name }}</service-name>
+        <customer>demo</customer>
+        <admin-state>enable</admin-state>
+{% for sap in svc.saps %}
+        <sap>
+          <sap-id>{{ sap }}</sap-id>
+          <admin-state>enable</admin-state>
+        </sap>
+{% endfor %}
+      </vpls>
+{% endfor %}
+    </service>
+  </configure>
+</config>

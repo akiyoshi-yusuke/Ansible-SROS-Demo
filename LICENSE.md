@@ -1,5 +1,5 @@
 ## SROS Ansible Playbook Examples
-Copyright 2017 Nokia
+Copyright 2017-2018 Nokia
 
 ### Apache License, Version 2.0
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,4 +22,4 @@ integration support can be purchased at NOKIA.
 For any interest according the NOKIA professional services portfolio, please
 contact your local NOKIA sales team.
 
-**Copyright (c) 2017 NOKIA**
+**Copyright (c) 2017-2018 NOKIA**
